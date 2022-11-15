@@ -20,7 +20,7 @@ jobs:
             perl: '5.36'
 
     services:
-      mysolr:
+      solr:
         image: solr:${{matrix.solr}}
 
     runs-on: ${{matrix.runner}}
@@ -63,7 +63,7 @@ jobs:
 
     - name: Try
       run: |
-        curl http://mysolr:8983
+        curl http://solr:8983
     - name: Run tests
       env:
         AUTHOR_TESTING: 1
