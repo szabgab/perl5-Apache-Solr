@@ -61,11 +61,14 @@ jobs:
       run: |
          cat  /Users/runner/.cpanm/work/*/build.log
 
+    - name: Try
+      run: |
+        curl http://mysolr:8983
     - name: Run tests
       env:
         AUTHOR_TESTING: 1
         RELEASE_TESTING: 1
-        SOLR_TEST_SERVER: http://mysolr:8983
+        xSOLR_TEST_SERVER: http://mysolr:8983
       run: |
         perl Makefile.PL
         make
