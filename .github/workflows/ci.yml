@@ -21,7 +21,7 @@ jobs:
 
     services:
       mysolr:
-        image: postgres:{{matrix.solr}}
+        image: solr:{{matrix.solr}}
 
     runs-on: ${{matrix.runner}}
     name: OS ${{matrix.runner}} Perl ${{matrix.perl}} Solr {{matrix.solr}}
