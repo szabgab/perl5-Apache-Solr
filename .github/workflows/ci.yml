@@ -65,7 +65,7 @@ jobs:
       env:
         AUTHOR_TESTING: 1
         RELEASE_TESTING: 1
-        SOLR_TEST_SERVER: mysolr
+        xSOLR_TEST_SERVER: mysolr
       run: |
         perl Makefile.PL
         make
