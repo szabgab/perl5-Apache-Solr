@@ -14,12 +14,17 @@ jobs:
       matrix:
         runner: [ubuntu-latest, macos-latest, windows-latest]
         perl: [ '5.30', '5.36' ]
+        solr: [ '9' ]
         exclude:
           - runner: windows-latest
             perl: '5.36'
 
+    services:
+      mysolr:
+        image: postgres:{{matrix.solr}}
+
     runs-on: ${{matrix.runner}}
-    name: OS ${{matrix.runner}} Perl ${{matrix.perl}}
+    name: OS ${{matrix.runner}} Perl ${{matrix.perl}} Solr {{matrix.solr}}
 
     steps:
     - uses: actions/checkout@v3
@@ -60,6 +65,7 @@ jobs:
       env:
         AUTHOR_TESTING: 1
         RELEASE_TESTING: 1
+        SOLR_TEST_SERVER: mysolr
       run: |
         perl Makefile.PL
         make
