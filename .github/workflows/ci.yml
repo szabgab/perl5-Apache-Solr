@@ -1,4 +1,4 @@
-name: Perl
+name: CI
 
 on:
   push:
@@ -21,10 +21,10 @@ jobs:
 
     services:
       mysolr:
-        image: solr:{{matrix.solr}}
+        image: solr:${{matrix.solr}}
 
     runs-on: ${{matrix.runner}}
-    name: OS ${{matrix.runner}} Perl ${{matrix.perl}} Solr {{matrix.solr}}
+    name: OS ${{matrix.runner}} Perl ${{matrix.perl}} Solr ${{matrix.solr}}
 
     steps:
     - uses: actions/checkout@v3
