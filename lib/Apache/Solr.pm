@@ -913,6 +913,7 @@ sub request($$;$$)
     my $req;
     if(!$body)
     {   # request without payload
+        print "URL $url\n";
         $req = HTTP::Request->new(GET => $url);
     }
     else
@@ -934,7 +935,7 @@ sub request($$;$$)
         unless($resp->is_success)
         {   alert "Solr request failed with ".$resp->code;
             sleep 5;    # let remote settle a bit
-            goto RETRY;
+            #goto RETRY;
         }
     }
 #use Data::Dumper;
