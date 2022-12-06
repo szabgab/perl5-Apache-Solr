@@ -30,10 +30,10 @@ jobs:
       run: |
         perl -v
 
-    #- name: Install Modules
-    #  run: |
-    #    cpanm -v
-    #    cpanm --installdeps --notest .
+    - name: Install Modules
+      run: |
+        cpanm -v
+        cpanm --installdeps --notest .
 
     - name: Show Errors on Windows
       if:  ${{ failure() && startsWith( matrix.runner, 'windows-')}}
@@ -52,19 +52,19 @@ jobs:
       run: |
          cat  /Users/runner/.cpanm/work/*/build.log
 
-    - name: Try
-      run: |
-        #curl http://mysolr:8983
-        ping -c 4 mysolr
-
-    #- name: Run tests
-    #  env:
-    #    AUTHOR_TESTING: 1
-    #    RELEASE_TESTING: 1
-    #    xSOLR_TEST_SERVER: http://mysolr:8983
+    #- name: Try
     #  run: |
-    #    perl Makefile.PL
-    #    make
-    #    make test
+    #    #curl http://mysolr:8983
+    #    ping -c 4 mysolr
+
+    - name: Run tests
+      env:
+        AUTHOR_TESTING: 1
+        RELEASE_TESTING: 1
+        SOLR_TEST_SERVER: http://mysolr:8983
+      run: |
+        perl Makefile.PL
+        make
+        make test
 
 
